@@ -21,17 +21,42 @@ Download and install it from here
 
 [http://dlc.sun.com.edgesuite.net/virtualbox/4.2.10/VirtualBox-4.2.10-84104-OSX.dmg](http://dlc.sun.com.edgesuite.net/virtualbox/4.2.10/VirtualBox-4.2.10-84104-OSX.dmg)
 
-## Centos
+## CentOS
 
-Then download centos and install it in a new virtual machine
+Then download CentOS and install it in a new virtual machine
 
 [http://mirror.stshosting.co.uk/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso](http://mirror.stshosting.co.uk/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso)
+
+## DHCP Networking
+
+I don't know how many chef nodes I will need in the future, so I didn't want to manage static ip.  Here is what I had to do to get DHCP networking up starting from a minimal CentOS server
+
+Set the hostname in `/etc/sysconfig/network`
+
+    NETWORKING=yes
+    HOSTNAME=chef-server
+    DHCP_HOSTNAME=chef-server
+
+Update `/etc/sysconfig/network-scripts/ifcfg-eth0`.  I had to change `ONBOOT` and `BOOTPROTO`.
+
+    DEVICE=eth0
+    HWADDR=08:00:27:EA:84:97
+    TYPE=Ethernet
+    UUID=f8a485aa-91cb-4ca8-b372-4397e8f45114
+    ONBOOT=yes
+    NM_CONTROLLED=yes
+    BOOTPROTO=dhcp
+
+Restart the networking and test
+
+    # services network restart
+    # ping google.com
 
 ## Zeroconf DNS
 
 I want to access my vms by name however I don't want to setup a domain name server or use static ip addresses and /etc/hosts, so I configured [Zeroconf](http://en.wikipedia.org/wiki/Zero_configuration_networking) and [mDNS](http://en.wikipedia.org/wiki/Multicast_DNS).
 
-This was a lot more difficult in Centos than I expected but I finally found a good blog that helped me through it.
+This was a lot more difficult in CentOS than I expected but I finally found a good blog that helped me through it.
 
 [http://theengguy.blogspot.ie/2013/02/mdns-centos-63.html](http://theengguy.blogspot.ie/2013/02/mdns-centos-63.html)
 
