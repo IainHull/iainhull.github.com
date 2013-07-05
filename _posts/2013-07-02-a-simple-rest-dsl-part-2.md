@@ -3,11 +3,11 @@ layout: post
 title: "A Simple REST DSL Part 2"
 description: ""
 category: 
-tags: [scala, dsl, builder, testing, rest]
+tags: [scala, dsl, builder, testing, rest, resttest]
 ---
 {% include JB/setup %}
 
-In part 2, I showed the builder pattern can improve code readability and composibility of REST requests.  Now, let's discover how the builder can be used as the basis for a simple DSL.
+In part 1, I showed the builder pattern can improve code readability and composibility of REST requests.  Now, let's discover how the builder can be used as the basis for a simple DSL.
 
 First you need to decide what words or phrases to use to bootstrap the request DSL.  Do this by describing some sample requests in simple English and looking for patterns, for example:
 
@@ -47,7 +47,7 @@ val r5 = driver.execute(DELETE withUrl "http://api.rest.org/person/" addPath id)
 val r6 = driver.execute(GET withUrl "http://api.rest.org/person/")
 {% endhighlight %}
 
-Now lets try to simplify the `driver.execute` part of the code.  Again implicit conversions enable us to automatically add an `execute` method to the `RequestBuilder` when required.  
+Now, let's try to simplify the `driver.execute` part of the code.  Again implicit conversions enable you to automatically add an `execute` method to the `RequestBuilder` when required.  
 
 {% highlight scala %}
 implicit class RichRequestBuilder(builder: RequestBuilder) {
@@ -57,9 +57,9 @@ implicit class RichRequestBuilder(builder: RequestBuilder) {
 }
 {% endhighlight %}
 
-When this class is in scope any `RequestBuilder` objects will be automatically be converted to `RichRequestBuilder` objects when the `execute` method is called.  This technique is the [Pimp My Library Pattern](https://wiki.scala-lang.org/display/SYGN/Pimp-my-library) and is heavily use in Scala to safely extend existing classes.  [Implicit classes](http://docs.scala-lang.org/overviews/core/implicit-classes.html) are a new feature in Scala 2.10, they are shorthand for a class definition and implicit function to convert the class' parameters to an instance of the class.  
+When this class is in scope any `RequestBuilder` objects will be automatically be converted to `RichRequestBuilder` objects when the `execute` method is called.  This technique is the [Pimp My Library Pattern](https://wiki.scala-lang.org/display/SYGN/Pimp-my-library) and is heavily use in Scala to safely extend existing classes.  [Implicit classes](http://docs.scala-lang.org/overviews/core/implicit-classes.html) are a new feature in Scala 2.10.  They are shorthand for a class definition and an implicit function to convert the class' parameters to an instance of the class.  
 
-Now the use case reads much more like English.  The `driver` is passed to the `execute` method implicitly removing some more boiler plate.  However since the method now takes no parameters empty parentheses are required with infix notation to enable the Scala compiler to find the end of the expression.  This also matches Scala's style of using empty parentheses to highlight side effects.
+Now the use case reads much more like English.  The `driver` is passed to the `execute` method implicitly removing some more boiler-plate code.  However, because the method now takes no parameters empty parentheses are required with infix notation to enable the Scala compiler to find the end of the expression.  This also matches Scala's style of using empty parentheses to highlight side effects.
 
 {% highlight scala %}
 implicit val driver = ...
@@ -73,7 +73,7 @@ val r5 = DELETE withUrl "http://api.rest.org/person/" addPath id execute ()
 val r6 = GET withUrl "http://api.rest.org/person/" execute ()
 {% endhighlight %}
 
-Wouldn't it be nice not to have to duplicate the `withUrl` on every line, maybe we can put this outside a code block and pass the url in implicitly.
+Wouldn't it be nice not to have to duplicate the `withUrl` on every line?  Maybe you can put this outside a code block and pass the url in implicitly:
 
 {% highlight scala %}
 val personJson = """{ "name": "Jason" }"""
@@ -88,9 +88,9 @@ RequestBuilder() withUrl "http://api.rest.org/person/" apply { implicit rb =>
 }
 {% endhighlight %}
 
-To support this the DSL must be changed, so that each new expression will use the closest implicit `RequestBuilder` object in scope.  This will enable partial `RequestBuilder` objects be used as the starting point for later expressions.  
+To support this you must change the DSL, so that each new expression will use the closest implicit `RequestBuilder` object in scope.  This will enable partial `RequestBuilder` objects be used as the starting point for later expressions.  
 
-First add implicit support to the `RequestBuilder` helper object.  The `emptyBuilder` is defined as implicit, now if there are no implicit `RequestBuilder` objects in scope the empty one will be used.  Next an implicit second argument list is added to the `apply` method, this now simply returns the implicit builder.  The end result is that the expression `RequestBuilder()` will always return the correct object using implicit resolution.
+First add implicit support to the `RequestBuilder` helper object.  The `emptyBuilder` is defined as implicit, now if there are no implicit `RequestBuilder` objects in scope, the empty one will be used.  Next, add an implicit second argument list to the `apply` method, this now simply returns the implicit builder.  The end result is that the expression `RequestBuilder()` will always return the correct object using implicit resolution.
 
 {% highlight scala %}
 object RequestBuilder {
@@ -102,14 +102,14 @@ object RequestBuilder {
 }
 {% endhighlight %}
 
-The same technique can be used with the `methodToRequestBuilder` function.  Now instead of always using the `emptyBuilder` it adds the method the latest one using implicit resolution.
+The same technique can be used with the `methodToRequestBuilder` function.  Now, instead of always using the `emptyBuilder`, it adds the method to the latest one using implicit resolution.
 
 {% highlight scala %}
 implicit def methodToRequestBuilder(method: Method)(implicit builder: RequestBuilder): RequestBuilder = builder.withMethod(method)
 {% endhighlight %}
 
 
-Now that we can use codeblocks to reuse common request parameters it would be nice to simplify the DSL by adding nicer aliases for some of the common `RequestBuilder` methods.
+Now that you can use codeblocks to reuse common request parameters it would be nice to simplify the DSL by adding nicer aliases for some of the common `RequestBuilder` methods.
 
 {% highlight scala %}
 implicit class RichRequestBuilder(builder: RequestBuilder) {
@@ -123,7 +123,7 @@ implicit class RichRequestBuilder(builder: RequestBuilder) {
 }
 {% endhighlight %}
 
-This enables us to create the more descriptive version or our use case below.  The `/` method is shorthand for `addPath` and the `:?` method is shorthand for `addQuery`, it is unfortunate that the ":" is required to preserve operator precedence rules in Scala, methods starting with `?` have a higher precedence to other methods, adding the ":" reduces the precedence so the expressions works as expected.
+This enables you to create the more descriptive version or our use case below.  The `/` method is shorthand for `addPath` and the `:?` method is shorthand for `addQuery`.  It is unfortunate that the ":" is required to preserve operator precedence rules in Scala.  Methods starting with `?` have a higher precedence to other methods, adding the ":" reduces the precedence so the expressions works as expected.
 
 {% highlight scala %}
 val personJson = """{ "name": "Jason" }"""
@@ -139,8 +139,10 @@ RequestBuilder() url "http://api.rest.org/" apply { implicit rb =>
 {% endhighlight %}
 
 
-This shows how easy it is to create a simple DSL based the [Pimp My Library Pattern](https://wiki.scala-lang.org/display/SYGN/Pimp-my-library) and a few implicit conversions.  The intent of each expression is made more explicit by removing the boiler plate code and simplifying the syntax so only information that affects the meaning of the expression is used.
+This shows how easy it is to create a simple DSL based the [Pimp My Library Pattern](https://wiki.scala-lang.org/display/SYGN/Pimp-my-library) and a few implicit conversions.  The intent of each expression is made more explicit by removing the boiler-plate code and simplifying the syntax so only information that affects the meaning of the expression is used.
 
-The source code for this post is available on [github](https://github.com/IainHull/resttest/tree/1e7fe664b3369657ef5ebf190a1470b0838f2102)
+The source code for this post is available on [github](https://github.com/IainHull/resttest/tree/e2d9b5e3640980a38aafeaa69c986d8d6da1ee6c)
 
-Next I will look at extending the DSL to include extracting specific values and verifying the response.
+Next I will examine extending the DSL to extract specific values and verifying parts of the response.
+
+If you would like to give me any feedback regarding this post I am happy to discuss anything and everything on Twitter and email. If there is enough interest I will also consider enabling comments on my blog.

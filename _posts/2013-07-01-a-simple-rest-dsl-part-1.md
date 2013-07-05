@@ -3,7 +3,7 @@ layout: post
 title: "A Simple REST DSL Part 1"
 description: ""
 category: 
-tags: [scala, dsl, builder, testing, rest]
+tags: [scala, dsl, builder, testing, rest, resttest]
 ---
 {% include JB/setup %}
 
@@ -124,7 +124,7 @@ val r6 = driver.execute(rb.withMethod(GET))
 
 This is much simpler, the `driver.execute` is a little distracting, but apart from this the builder brings the intent of the code to the foreground.  There is no need to mention the header and body, when they are not required.  The first line creates the default builder `rb`, which specifies the root url that is shared by the subsequent requests.  This is the power of an immutable builder, components can be composed to build the final request. The function `toRequest` is an implicit conversion that converts `RequestBuilder` instances to `Request` instances when required, this helps remove the clutter in each request.
 
-Whenever I consider developing a DSL, I examine a Fluent Builder first. It can greatly improve code readability with very little effort.  You can implement builder similar to this in Java, Scala or any other object oriented language.  Maybe after using the Builder, you will decide that you don't need a custom DSL.  If you do discover that a custom DSL would be beneficial the builder is a useful starting point for implement the DSL.  Next I will examine using this builder to implement a DSL and how it improves the readability and intent of the system tests.
+Whenever I consider developing a DSL, I examine a Fluent Builder first. It can greatly improve code readability with very little effort.  You can implement builders similar to this in Java, Scala or any other object oriented language.  Maybe after using the Builder, you will decide that you don't need a custom DSL.  If you do discover that a custom DSL would be beneficial the builder is a useful starting point for implement that DSL.  Next I will examine using this builder to implement a DSL and how it improves the readability and intent of the system tests.
 
 The source code for this post is available on [github](https://github.com/IainHull/resttest/tree/1e7fe664b3369657ef5ebf190a1470b0838f2102)
 
