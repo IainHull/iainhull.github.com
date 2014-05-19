@@ -77,7 +77,6 @@ h4, h5, h6 {
 
 a {
   color:#C30000;
-  font-weight:200;
   text-decoration:none;
 }
 
@@ -155,6 +154,12 @@ img {
 code, pre {
 	font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size:14px;
+}
+
+p > code {
+  background-color: #D7D8C8;
+  padding-left: 0.5ex;
+  padding-right: 0.5ex;
 }
 
 pre {
@@ -329,6 +334,10 @@ footer {
 
 
   background-color: #FBFAF7;
+}
+
+footer a {
+  font-weight:200;  
 }
 
 @media print, screen and (max-width: 960px) {

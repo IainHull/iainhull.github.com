@@ -62,6 +62,22 @@ using(_ url "http://api.rest.org/person") { implicit rb =>
 1. The single underscore `_` represents the current `RequestBuilder` this is a little subtle but follows the standard Scala convention for anonymous functions. It is shorter than `RequestBuilder()` and is also more idiomatic than a special DSL specific symbol.
 1. The `apply` method does not have to be explicitly specified because the parentheses around the expression enable the Scala compiler to infer it.
 
+So how is the `using` method implemented?
+
+```scala
+def using(config: RequestBuilder => RequestBuilder)
+         (process: RequestBuilder => Unit)
+         (implicit builder: RequestBuilder): Unit = {
+  process(config(builder))
+}
+```
+
+The `using` method takes three parameter lists each with a single parameter.  Breaking the parameters into their own list enables the method to be used like a control structure, where the function in the second parameter is specified as a code block.
+
+The `config` parameter is just a function that takes a current `RequestBuilder`and returns the updated `RequestBuilder` required by the enclosing block.  This function is typically applied between `( ... )` and uses the `_` syntax to generate the function.  The `process` parameter is another function taking a `RequestBuilder` and returning `Unit`.  This is typically applied with `{ implicit rb => ... }`, my making the `rb` parameter implicit the `using` method can be nested.  The final `builder` parameter is the currently configured `RequestBuilder`, this is passed in implicitly.  
+
+The implementation is very simple, generate updated `RequestBuilder` by calling the  `config` function with implicit `builder`. Then pass the result to the `process` function, where the updated `RequestBuilder` is used.
+
 Now the full use case looks like:
 
 ```scala
@@ -79,4 +95,5 @@ using(_ url "http://api.rest.org/person") { implicit rb =>
   GET asserting (statusCode is Status.OK, jsonBodyAsList[Person] is EmptyList)
 }
 ```
+
 Next I want to examine how assertions are implemented and whether they can be integrated with [ScalaTest](http://scalatest.org). I also have some opinions on how best to test DSLs. But both of these will have to wait for a subsequent post.
