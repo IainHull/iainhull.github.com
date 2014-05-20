@@ -156,7 +156,7 @@ code, pre {
   font-size:14px;
 }
 
-p > code {
+:not(pre) > code {
   background-color: #D7D8C8;
   padding-left: 0.5ex;
   padding-right: 0.5ex;
