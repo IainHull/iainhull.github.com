@@ -7,4 +7,4 @@ tags: [blog]
 
 I haven't written anything in ages, but felt my blog needed a face lift, so I changed-up the theme.
 
-I have applied the [Clean Blog](http://jekyllthemes.org/themes/clean-blog/) theme with some calming photos from a old trip to Japan.
+I have applied the [Clean Blog](http://jekyllthemes.org/themes/clean-blog/) theme with some calming photos from a [old trip to Japan](https://picasaweb.google.com/118368412716679470124/KyotoMay2008).
