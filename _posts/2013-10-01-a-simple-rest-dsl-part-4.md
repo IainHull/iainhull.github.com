@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "A Simple REST DSL Part 4"
+subtitle: "Providing a fluid syntax for common request properties."
 description: ""
 category: 
 tags: [scala, dsl, builder, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 At the end of part 3 we had a Domain Specific Language (DLS) that could neatly express a complete REST use case. It fully described the requests and their expected responses.
 

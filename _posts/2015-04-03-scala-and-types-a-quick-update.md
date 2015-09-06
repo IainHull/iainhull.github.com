@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Scala and Types a Quick Update"
+subtitle: "I have spent the past year or so thinking about types in general and Scala's type system in particular, so here is a quick update on what I have been doing."
 description: ""
 category:
 tags: [scala, scaladays, wrappertypes, types]
 ---
-{% include JB/setup %}
 
 I haven't had any time to blog recently, work has been too busy, which is just the way I like it :-).  I have spent the past year or so thinking about types in general and Scala's type system in particular, so here is a quick update on what I have been doing.
 

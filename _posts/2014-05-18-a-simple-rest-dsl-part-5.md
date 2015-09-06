@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "A Simple REST DSL Part 5"
+subtitle: "Today I want to talk about how I structure my DSL code base."
 description: ""
 category: 
 tags: [scala, dsl, builder, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 I haven't had a chance to write about my REST DSL in ages.  So today I want to talk about how I structure my DSL code base.
 

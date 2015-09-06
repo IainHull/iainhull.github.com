@@ -2,10 +2,10 @@
 layout: post
 title: "Moving a project from google code to github"
 description: ""
+subtitle: "Finally moved my old cmakeant project from google-code to github (I have been meaning to do this for ages). In case you are trying to do the same, here are the steps."
 category: github 
 tags: [git, hg, github, google-code]
 ---
-{% include JB/setup %}
 
 Finally moved my old cmakeant project from google-code to github (I have been meaning to do this for ages). In case you are trying to do the same, here are the steps:
 

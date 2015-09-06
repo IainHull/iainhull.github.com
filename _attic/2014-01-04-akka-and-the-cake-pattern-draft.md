@@ -5,7 +5,6 @@ description: ''
 category: 
 tags: ! '[]'
 ---
-{% include JB/setup %}
 
 The best advice I found when trying to apply the [Cake Pattern](http://jonasboner.com/2008/10/06/real-world-scala-dependency-injection-di/) to an [Akka](http://akka.io) application is this answer on [Stack Overflow](http://stackoverflow.com/questions/15996098/akka-and-cake-pattern). After applying this to our own Akka application I wanted to share our lessons.
 

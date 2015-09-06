@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "A Simple REST DSL Part 6"
+subtitle: "A big thank you to everyone who attended my talk at ScalaDays"
 description: ""
 category:
 tags: [scala, dsl, builder, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 A big thank you to everyone who attended my talk at
 [ScalaDays](http://scaladays.org). I really enjoyed all your excellent

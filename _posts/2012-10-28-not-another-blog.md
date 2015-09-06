@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Not another blog"
+subtitle: "I could not get my work done these days without all the information people share on their blogs."
 description: "Why start another blog"
 category: blog
 tags: [blog, github]
 ---
-{% include JB/setup %}
 
 I could not get my work done these days without all the information people share on their blogs.  They answer my questions before I  think of them, keep me up to date with the latest tech news and stoke my imagination with new information and opinions.
 

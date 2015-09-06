@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Centos in VirtaulBox on MacOSX"
+subtitle: "Setting up a Centos virtual machine to explore Chef."
 description: ""
 category: 
 tags: [virtualbox,centos]
 ---
-{% include JB/setup %}
 
 I normally prefer to use Ubuntu server (I find more things work out of the box, software is easier to find and install and the command line has been pimped to be a little friendlier). However I need to explore Chef for work which means using Centos, so my first job was to set up some Centos virtual machines to play with.
 

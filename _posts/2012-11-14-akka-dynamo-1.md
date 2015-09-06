@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Akka Dynamo 1"
+subtitle: "First experiments with implementing Dynamo in Akka."
 description: ""
 category: 
 tags: [akka, scala, dynamo, sbt]
 ---
-{% include JB/setup %}
 
 
 http://lethain.com/hands-on-review-of-the-dynamo-paper/

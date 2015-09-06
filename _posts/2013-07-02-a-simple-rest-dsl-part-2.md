@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "A Simple REST DSL Part 2"
+subtitle: "Using a builder to construct a DSL."
 description: ""
 category: 
 tags: [scala, dsl, builder, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 In part 1, I showed the builder pattern can improve code readability and composibility of REST requests.  Now, let's discover how the builder can be used as the basis for a simple DSL.
 

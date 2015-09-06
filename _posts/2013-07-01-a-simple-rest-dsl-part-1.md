@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "A Simple REST DSL Part 1"
+subtitle: "Creating a DSL for testing REST based Web services."
 description: ""
 category: 
 tags: [scala, dsl, builder, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 I spend a lot of time working on REST based Web services.  Writing system tests for these can lead to a lot of boiler-plate code which is tedious to read and write and obscures the intention of the tests.  When it comes to removing boiler plate, Scala is your friend, so lets see what you can do to improve your tests.  I want to explore internal [Domain Specific Languages](http://en.wikipedia.org/wiki/Domain-specific_language) (DSLs), an area that Scala excels at, but first I want to look at the Builder pattern.
 

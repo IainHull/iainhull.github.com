@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [scala, dsl, scalatest, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 ```scala
 val Jason: Person = ???

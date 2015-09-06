@@ -1,15 +1,13 @@
 ---
 layout: post
 title: "Scaladays Presentation Online"
-description: ""
-category:
+subtitle: "The video of my talk from Scala Days in San Francisco is now online."
 tags: [scala, scaladays, wrappertypes, types]
 ---
-{% include JB/setup %}
 
 The video of my talk from [Scala Days in San Francisco](http://event.scaladays.org/scaladays-sanfran-2015#!#schedulePopupExtras-6553) is now online.
 
-<div data-parleys-presentation="improving-correctness-with-types" style="width:100%;height:300px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script><a href="https://www.parleys.com/play/improving-correctness-with-types">Watch on Parleys.com</a></div>
+<div data-parleys-presentation="improving-correctness-with-types" style="width:100%;height:300px;padding-bottom:20px"><script type = "text/javascript" src="//parleys.com/js/parleys-share.js"></script><a href="https://www.parleys.com/play/improving-correctness-with-types">Watch on Parleys.com</a></div>
 
 ## Abstract
 

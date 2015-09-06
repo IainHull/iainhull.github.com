@@ -5,7 +5,6 @@ description: ""
 category: 
 tags: [chef,devops]
 ---
-{% include JB/setup %}
 
 ## chef-server
 

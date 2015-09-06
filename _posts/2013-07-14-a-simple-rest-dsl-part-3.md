@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "A Simple REST DSL Part 3"
+subtitle: "Processing http responses."
 description: ""
 category: 
 tags: [scala, dsl, builder, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 In part 2, I showed how to describe and execute REST requests with a simple descriptive syntax, but it completely ignored processing the response.  This should be as simple as making the request.  First let's simplify access to the components of the response.  
 

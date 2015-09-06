@@ -5,7 +5,6 @@ description: ""
 category:
 tags: [scala, dsl, builder, testing, rest, resttest]
 ---
-{% include JB/setup %}
 
 
 ```scala
