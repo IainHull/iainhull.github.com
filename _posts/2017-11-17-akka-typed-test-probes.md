@@ -119,13 +119,19 @@ class QueueActorSpec extends fixture.AsyncFlatSpec with CompleteLastly with Matc
     // Now test
 
     val futureMessage = testProbe.nextMessage()  // 1
+
     val futureResponse: Future[EnqueueJobResponse] = actor ? (EnqueueJob(job, _)) // 2
+
     for {
       EnqueueJob(job, sender) <- futureMessage // 3
+
       _ = sender ! JobEnqueued(job) // 4
+
       JobEnqueued(j) <- futureResponse // 5
+
     } yield {
       j shouldBe job // 6
+      
     }
   }
 }
