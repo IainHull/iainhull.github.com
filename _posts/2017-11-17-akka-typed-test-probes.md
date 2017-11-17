@@ -224,4 +224,4 @@ class AsyncTestProbe[A] {
 
 I am still getting up to speed with Akka Typed, so there might be cleaner ways to test typed actor interactions without test probes. I hope this blog shows their utility or helps me discover the alternatives :-).
 
-The source code for this blog is at https://github.com/IainHull/akka-typed-testprobe.
+The source code for this blog is available on [github]( https://github.com/IainHull/akka-typed-testprobe).
