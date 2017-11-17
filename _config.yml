@@ -9,9 +9,6 @@ twitter_username: "IainHull"
 github_username: "IainHull"
 
 # Build settings
-markdown: redcarpet
-#markdown: kramdown
-#pygments: true
 highlighter: rouge
 permalink: pretty
 paginate: 5
