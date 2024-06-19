@@ -5,7 +5,7 @@ subtitle: "Missing Akka TestKit with Akka Typed."
 date:    2017-11-17T12:00:00
 author:     "Iain Hull"
 categories: [ ]
-tags: [akka akka-typed test-probe tdd types]
+tags: [akka, akka-typed, test-probe, tdd, types]
 ---
 
 It is no secret that I love types and have been using Akka for a number of years, so I could not wait to play with Akka Typed. Akka Typed is quite different from its untyped cousin. Every time I reach for my favorite class or idiom I find it works differently or maybe doesn't even exist at all. One of the big differences is that there is not TestKit for typed actors. People recommend you test the units without actors then use simple `tell` (`!`) and `askPattern` (`?`) for integration tests. I have been following this advice by and large, however recently discovered I require test probes to test an actor that simply orchestrates other actors.
